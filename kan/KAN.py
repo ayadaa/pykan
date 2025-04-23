@@ -827,7 +827,9 @@ class KAN(nn.Module):
             for i in range(len(acts_scale)):
                 vec = acts_scale[i].reshape(-1, )
 
-                p = vec / torch.sum(vec)
+                # p = vec / torch.sum(vec)
+                p = vec / torch.prod(vec)  #Ayad
+                
                 l1 = torch.sum(nonlinear(vec))
                 entropy = - torch.sum(p * torch.log2(p + 1e-4))
                 reg_ += lamb_l1 * l1 + lamb_entropy * entropy  # both l1 and entropy
