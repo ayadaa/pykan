@@ -177,9 +177,9 @@ class KANLayer(nn.Module):
         y = self.mask[None, :] * y
         postacts = y.clone().reshape(batch, self.out_dim, self.in_dim)
         
-        # y = torch.sum(y.reshape(batch, self.out_dim, self.in_dim), dim=2)  # shape (batch, out_dim)
+        y = torch.sum(y.reshape(batch, self.out_dim, self.in_dim), dim=2)  # shape (batch, out_dim)
         
-        y = torch.prod(y.reshape(batch, self.out_dim, self.in_dim), dim=2)  # shape (batch, out_dim) # Ayad
+        # y = torch.prod(y.reshape(batch, self.out_dim, self.in_dim), dim=2)  # shape (batch, out_dim) # Ayad
         # print(f'Ayad y: {y}')
         
         # y shape: (batch, out_dim); preacts shape: (batch, in_dim, out_dim)
